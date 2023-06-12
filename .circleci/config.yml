@@ -21,7 +21,7 @@ jobs:
           command: ls
       - run:
           name: test
-          command: go run src/main.go
+          command: go run main.go
 
       - restore_cache:
           keys:
