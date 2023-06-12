@@ -10,29 +10,31 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: circleci/golang:1.15.8
+      - image: circleci/golang:1.16
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
 
       - run:
-          name: test
-          command: ls
-      - run:
-          name: test
-          command: go run src/main.go
+          command: |
+            cd src
+            go run main.go
 
       - restore_cache:
           keys:
-            - go-mod-v4-{{ checksum "go.sum" }}
+            - go-mod-v4-{{ checksum "src/go.sum" }}
+
       - run:
           name: Install Dependencies
-          command: go mod download
+          command: cd src
+            go mod download
+
       - save_cache:
-          key: go-mod-v4-{{ checksum "go.sum" }}
+          key: go-mod-v4-{{ checksum "src/go.sum" }}
           paths:
             - "/go/pkg/mod"
+
       - run:
           name: Run tests
           command: |
