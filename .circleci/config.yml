@@ -6,7 +6,7 @@ version: 2.1
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   build:
-    working_directory: ~/demo-for-circleci/src
+    working_directory: ~/demo-for-circleci
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -15,6 +15,14 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
+      - run:
+          name: test
+          command: go run main.go
+
+      - run:
+          name: test
+          command: ls
+
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "go.sum" }}
