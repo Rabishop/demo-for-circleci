@@ -17,8 +17,7 @@ jobs:
       - checkout
 
       - run:
-          name: test
-          command: ls
+          command: cd src
       - run:
           name: test
           command: go run main.go
