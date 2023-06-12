@@ -19,7 +19,7 @@ jobs:
       - run:
           command: ls
       - run:
-          command: cd src
+          command: cd /src
       - run:
           command: ls
       - run:
