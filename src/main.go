@@ -8,8 +8,23 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", helloHandler)
-	http.ListenAndServe(":8080", nil)
+
+	currentTime := time.Now()
+
+	// 生成一个介于1到100之间的随机数
+	randomNumber := rand.Intn(100) + 1
+
+	// 构造响应消息
+	message := fmt.Sprintf("Current time: %s\nRandom number: %d\nHello, World!", currentTime, randomNumber)
+
+	fmt.Println(currentTime)
+
+	fmt.Println(randomNumber)
+
+	fmt.Println(message)
+
+	// http.HandleFunc("/", helloHandler)
+	// http.ListenAndServe(":8080", nil)
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
